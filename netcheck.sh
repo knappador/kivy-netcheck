@@ -1,16 +1,17 @@
 #!/bin/bash
 
 #why am I scripting to my script?  nonetheless in bash...
-#if [[ -z $1 ]]
-#then
-#    echo "You need to supply the sample directory as the first argument"
-#    exit
-#fi
+if [[ -z $1 ]]
+then
+    echo "You need to supply the sample directory as the first argument"
+    exit
+fi
 
 debug=true
 package=org.kivy.netcheck
 name="Netcheck Testing"
-dir=~/projects/netcheck/
+#dir=~/projects/netcheck/
+dir=$1
 version=0.1
 orientation='landscape'
 jars=()
@@ -38,8 +39,7 @@ else
 fi
 
 command=(./build.py --package "$package" --version $version --orientation "$orientation" --name "$name" --dir "$dir")
-#command+=("${jar_options[@]}" "${perm_options[@]}" "${mode[@]}")
-command+=("${perm_options[@]}" "${mode[@]}")
+command+=("${jar_options[@]}" "${perm_options[@]}" "${mode[@]}")
 
 #echo "${command[@]}"
 "${command[@]}"
